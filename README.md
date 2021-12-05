@@ -8,13 +8,13 @@
         <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?style=for-the-badge&cacheSeconds=2592000" />
     </a>
     <a href="https://https://opensource.org/licenses/BSD-3-Clause" target="_blank">
-        <img alt="License" src="https://img.shields.io/github/license/Ascendus/RN-Discord-Bot?style=for-the-badge" />
+        <img alt="License" src="https://img.shields.io/github/license/Ascendus/Astura-Python?style=for-the-badge" />
     </a>        
     <a href="https://github.com/Ascendus/RN-Discord-Bot/issues" target="_blank">
         <img alt="Top language" src="https://img.shields.io/github/issues/Ascendus/DiscordJS-Bot?style=for-the-badge">
     </a>
     <a href="https://github.com/Ascendus/RN-Discord-Bot/search?l=typescript" target="_blank">
-        <img alt="Top language" src="https://img.shields.io/github/languages/top/Ascendus/RN-Discord-Bot?style=for-the-badge">
+        <img alt="Top language" src="https://img.shields.io/github/languages/top/Ascendus/Astura-Python?style=for-the-badge">
     </a>
 </p>
 
