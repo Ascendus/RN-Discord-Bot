@@ -1,4 +1,10 @@
-import { Client, ClientUser, Collection, CommandInteraction, Guild } from "discord.js";
+import {
+    Client,
+    ClientUser,
+    Collection,
+    CommandInteraction,
+    Guild
+} from "discord.js";
 import { Command } from "../structures/Command";
 import { CommandHandler } from "../handlers/CommandHandler";
 import { Configuration } from "../structures/Configuration";
@@ -23,7 +29,7 @@ declare module "discord.js" {
         trades: Collection<string, any>;
         util: Utilities;
     }
-};
+}
 
 export class ExtendedClient extends Client {
     public commandHandler: CommandHandler;
@@ -45,7 +51,7 @@ export class ExtendedClient extends Client {
         this.markdown = new Markdown();
         this.util = new Utilities(this);
 
-        this.commandHandler = new CommandHandler(this, {
+        this.commandHandler = new CommandHandler(/*this, {
             allowDirectMessages: true,
             blockBots: true,
             directory: join(__dirname, "..", "commands"),
@@ -60,18 +66,18 @@ export class ExtendedClient extends Client {
 
                 cooldownWarning: (interaction: CommandInteraction, remaining: string, command: Command): string => `${this.markdown.userMention(interaction.user.id)}, please wait **${remaining}** seconds before reusing the \`${command.id}\` command!`
             }
-        });
+        }*/);
 
         this.listenerHandler = new ListenerHandler(this, {
             directory: join(__dirname, "..", "listeners")
         });
-    };
+    }
 
     private async init(): Promise<void> {
-        await this.commandHandler.registerCommands(this.config.clientID);
-        await this.commandHandler.load();
+        // await this.commandHandler.registerCommands(this.config.clientID);
+        // await this.commandHandler.load();
         await this.listenerHandler.load();
-    };
+    }
 
     public async start(): Promise<string | void> {
         try {
@@ -79,6 +85,6 @@ export class ExtendedClient extends Client {
             return this.login(this.config.token);
         } catch (error) {
             return this.logger.sendError((error as Error).stack as string);
-        };
-    };
-};
+        }
+    }
+}
