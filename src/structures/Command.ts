@@ -1,1 +1,3 @@
-export class Command {}
+export class Command {
+    public constructor() {}
+}
