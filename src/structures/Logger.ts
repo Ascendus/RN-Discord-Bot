@@ -14,10 +14,10 @@ export class Logger {
     };
 
     public sendInfo(message: string): void {
-        return console.log(`${chalk.blue("info")}    - ${message}`);
+        return console.log(`${chalk.blueBright("info")}    - ${message}`);
     };
 
     public sendReady(message: string): void {
-        return console.log(`${chalk.green("ready")}   - ${message}`);
+        return console.log(`${chalk.magenta("ready")}   - ${message}`);
     };
 };
