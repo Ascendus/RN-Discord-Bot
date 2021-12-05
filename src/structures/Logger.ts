@@ -6,7 +6,7 @@ export class Logger {
     };
 
     public sendError(message: string): void {
-        return console.log(`${chalk.red("error")}    - ${message}`);
+        return console.log(`${chalk.red("error")}   - ${message}`);
     };
 
     public sendWarning(message: string): void {
@@ -14,10 +14,10 @@ export class Logger {
     };
 
     public sendInfo(message: string): void {
-        return console.log(`${chalk.blue("info")}     - ${message}`);
+        return console.log(`${chalk.blue("info")}    - ${message}`);
     };
 
     public sendReady(message: string): void {
-        return console.log(`${chalk.green("ready")}    - ${message}`);
+        return console.log(`${chalk.green("ready")}   - ${message}`);
     };
 };
