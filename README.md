@@ -7,7 +7,7 @@
     <a href="https://github.com/Ascendus/RN-Discord-Bot/releases" target="_blank">
         <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?style=for-the-badge&cacheSeconds=2592000" />
     </a>
-    <a href="https://https://opensource.org/licenses/BSD-3-Clause" target="_blank">
+    <a href="https://opensource.org/licenses/BSD-3-Clause" target="_blank">
         <img alt="License" src="https://img.shields.io/github/license/Ascendus/RN-Discord-Bot?style=for-the-badge" />
     </a>        
     <a href="https://github.com/Ascendus/RN-Discord-Bot/issues" target="_blank">
