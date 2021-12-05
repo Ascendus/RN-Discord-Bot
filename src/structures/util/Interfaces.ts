@@ -1,6 +1,16 @@
-import { ClientOptions } from "discord.js";
+import { CategoryType } from "./Types";
+import { ClientOptions, ColorResolvable } from "discord.js";
+import { Collection } from "discord.js";
+import { Command } from "../Command";
+import { Emitter, ListenerCategory, ListenerType } from "./Types";
+import { Listener } from "../Listener";
 
 // #region Constants
+
+export interface CategoryOptions {
+    content: Collection<string, Command> | Collection<string, Listener> | null;
+    type: CategoryType;
+}
 
 export interface GovernmentIcons {
     democracy: string;
@@ -572,4 +582,29 @@ export interface ConfigurationOptions {
     clientOptions: ClientOptions;
     owners: string[];
     token: string;
-};
+}
+
+export interface ListenerOptions {
+    category: ListenerCategory;
+    emitter: Emitter;
+    name: ListenerType;
+}
+
+export interface ListenerHandlerOptions {
+    directory: string;
+}
+
+export interface UtilityDefaults {
+    // embed: UtilityEmbedDefaults;
+    colors: UtilityColorDefaults;
+}
+
+export interface UtilityColorDefaults {
+    error: ColorResolvable;
+}
+
+/*
+export interface UtilityEmbedDefaults {
+    color: ColorResolvable;
+}
+*/
