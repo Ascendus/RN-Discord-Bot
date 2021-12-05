@@ -10,7 +10,8 @@
         "prettier": "prettier 'src/**/*.ts'",
         "prettier:fix": "prettier --write 'src/**/*.ts'",
         "start": "node dist/Index.js",
-        "test": "npm test"
+        "test": "npm test",
+        "test:custom": "node test.js"
     },
     "keywords": [
         "Roleplay",
