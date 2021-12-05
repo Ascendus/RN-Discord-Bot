@@ -39,7 +39,7 @@ class Logger {
      * @returns 
      */
     sendInfo(message) {
-        return console.log(`${chalk.blue("info")}    - ${message}`);
+        return console.log(`${chalk.blueBright("info")}    - ${message}`);
     };
 
     /**
@@ -49,7 +49,7 @@ class Logger {
      * @returns 
      */
     sendReady(message) {
-        return console.log(`${chalk.green("ready")}   - ${message}`);
+        return console.log(`${chalk.magenta("ready")}   - ${message}`);
     };
 };
 
