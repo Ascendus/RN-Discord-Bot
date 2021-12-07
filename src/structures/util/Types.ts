@@ -1,4 +1,15 @@
+export type ArgumentType =
+    | "user"
+    | "channel"
+    | "boolean"
+    | "integer"
+    | "mentionable"
+    | "number"
+    | "role"
+    | "string";
+    
 export type CategoryType = "command" | "listener";
+export type CommandChannel = "guild" | "dm" | "all";
 export type Emitter = "client" | "process" | "commandHandler";
 export type ListenerCategory = Emitter;
 

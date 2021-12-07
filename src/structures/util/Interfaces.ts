@@ -1,9 +1,10 @@
+import { Argument } from "../Argument";
+import { ArgumentType, CommandChannel, Emitter, ListenerCategory, ListenerType } from "./Types";
 import { CategoryType } from "./Types";
-import { ClientOptions, ColorResolvable } from "discord.js";
-import { Collection } from "discord.js";
+import { ClientOptions, Collection, ColorResolvable, PermissionString } from "discord.js";
 import { Command } from "../Command";
-import { Emitter, ListenerCategory, ListenerType } from "./Types";
 import { Listener } from "../Listener";
+import { OptionChoice } from "../OptionChoice";
 
 // #region Constants
 
@@ -576,6 +577,41 @@ export interface OnWork {
 }
 
 // #endregion
+
+export interface ArgumentOptions {
+    name: string;
+    description: string;
+    choices?: OptionChoice[];
+    required: boolean;
+    type: ArgumentType;
+};
+
+export interface CommandExceptions {
+    ignoreCooldown: string[];
+    ignorePermissions: string[];
+};
+
+export interface CommandOptions {
+    aliases?: string[];
+    arguments?: Argument[];
+    category: string;
+    channel: CommandChannel;
+    cooldown: number;
+    description: string;
+    enabledByDefault: boolean;
+    examples: string[];
+    exceptions: CommandExceptions;
+    isSubCommand: boolean;
+    permissions: CommandPermissions;
+    ownerOnly: boolean;
+    subCommands?: Command[];
+    usage: string;
+}
+
+export interface CommandPermissions {
+    clientPermissions: PermissionString[];
+    userPermissions: PermissionString[];
+};
 
 export interface ConfigurationOptions {
     clientID: string;
