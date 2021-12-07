@@ -26,7 +26,7 @@ export class ListenerHandler {
                 categories.push(category.toLowerCase());
             };
 
-            categories.forEach(async category => {
+            categories.forEach(async (category: string): Promise<void> => {
                 const categoryName: string = this.client.util.capitalize(category);
                 
                 this.categories.set(categoryName, new Category(categoryName, {
@@ -36,7 +36,7 @@ export class ListenerHandler {
             });
 
             for (const category of categories.values()) {
-                for (const listenerFileName of readdirSync(`${this.directory}/${category}`).filter(fileName => fileName.endsWith(".js"))) {
+                for (const listenerFileName of readdirSync(`${this.directory}/${category}`).filter((fileName: string): boolean => fileName.endsWith(".js"))) {
                     const listenerFile = require(`${this.directory}/${category}/${listenerFileName}`).default;
                     const listener: Listener = new listenerFile();
 
@@ -55,7 +55,7 @@ export class ListenerHandler {
                 };
 
                 const categoryName: string = this.client.util.capitalize(category);
-                const categoryListeners: Collection<string, Listener> = this.listeners.filter(listener => listener.category.toLowerCase() === category.toLowerCase());
+                const categoryListeners: Collection<string, Listener> = this.listeners.filter((listener: Listener): boolean => listener.category.toLowerCase() === category.toLowerCase());
 
                 this.categories.set(categoryName, new Category(categoryName, {
                     content: categoryListeners,

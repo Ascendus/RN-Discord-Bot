@@ -40,7 +40,7 @@ export class Utilities {
             .toLowerCase()
             .replace(/guild/g, "server")
             .split(" ")
-            .map((word) => word.charAt(0).toUpperCase() + word.substring(1))
+            .map((word: string): string => word.charAt(0).toUpperCase() + word.substring(1))
             .join(" ");
         return permissionString;
     }

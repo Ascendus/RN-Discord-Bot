@@ -47,7 +47,7 @@ export class Command extends SlashCommandBuilder {
         if (this.arguments) this.arguments.forEach(argument => {
             switch (argument.type) {
                 case "boolean":
-                    this.addBooleanOption((option: SlashCommandBooleanOption) => option
+                    this.addBooleanOption((option: SlashCommandBooleanOption): SlashCommandBooleanOption => option
                         .setName(argument.name)
                         .setDescription(argument.description)
                         .setRequired(argument.required)
@@ -55,7 +55,7 @@ export class Command extends SlashCommandBuilder {
                     break;
 
                 case "channel":
-                    this.addChannelOption((option: SlashCommandChannelOption) => option
+                    this.addChannelOption((option: SlashCommandChannelOption): SlashCommandChannelOption => option
                         .setName(argument.name)
                         .setDescription(argument.description)
                         .setRequired(argument.required)
@@ -63,7 +63,7 @@ export class Command extends SlashCommandBuilder {
                     break;
 
                 case "integer":
-                    this.addIntegerOption((option: SlashCommandIntegerOption) => option
+                    this.addIntegerOption((option: SlashCommandIntegerOption): SlashCommandIntegerOption => option
                         .setName(argument.name)
                         .setDescription(argument.description)
                         .setRequired(argument.required)
@@ -71,7 +71,7 @@ export class Command extends SlashCommandBuilder {
                     break;
 
                 case "mentionable":
-                    this.addMentionableOption((option: SlashCommandMentionableOption) => option
+                    this.addMentionableOption((option: SlashCommandMentionableOption): SlashCommandMentionableOption => option
                         .setName(argument.name)
                         .setDescription(argument.description)
                         .setRequired(argument.required)
@@ -79,7 +79,7 @@ export class Command extends SlashCommandBuilder {
                     break;
 
                 case "number":
-                    this.addNumberOption((option: SlashCommandNumberOption) => option
+                    this.addNumberOption((option: SlashCommandNumberOption): SlashCommandNumberOption => option
                         .setName(argument.name)
                         .setDescription(argument.description)
                         .setRequired(argument.required)
@@ -87,7 +87,7 @@ export class Command extends SlashCommandBuilder {
                     break;
 
                 case "role":
-                    this.addRoleOption((option: SlashCommandRoleOption) => option
+                    this.addRoleOption((option: SlashCommandRoleOption): SlashCommandRoleOption => option
                         .setName(argument.name)
                         .setDescription(argument.description)
                         .setRequired(argument.required)
@@ -101,14 +101,14 @@ export class Command extends SlashCommandBuilder {
                             return [choice.name, choice.value];
                         });
     
-                        this.addStringOption((option: SlashCommandStringOption) => option
+                        this.addStringOption((option: SlashCommandStringOption): SlashCommandStringOption => option
                             .setName(argument.name)
                             .setDescription(argument.description)
                             .setRequired(argument.required)
                             .addChoices(choices)
                         );
                     } else {   
-                        this.addStringOption((option: SlashCommandStringOption) => option
+                        this.addStringOption((option: SlashCommandStringOption): SlashCommandStringOption => option
                             .setName(argument.name)
                             .setDescription(argument.description)
                             .setRequired(argument.required)
@@ -117,7 +117,7 @@ export class Command extends SlashCommandBuilder {
                     break;
 
                 case "user":
-                    this.addUserOption((option: SlashCommandUserOption) => option
+                    this.addUserOption((option: SlashCommandUserOption): SlashCommandUserOption => option
                         .setName(argument.name)
                         .setDescription(argument.description)
                         .setRequired(argument.required)
@@ -126,8 +126,8 @@ export class Command extends SlashCommandBuilder {
             };
         });
 
-        if (this.subCommands) this.subCommands.forEach((command: Command) => {
-            this.addSubcommand((subcommand: SlashCommandSubcommandBuilder) => subcommand
+        if (this.subCommands) this.subCommands.forEach((command: Command): void => {
+            this.addSubcommand((subcommand: SlashCommandSubcommandBuilder): SlashCommandSubcommandBuilder => subcommand
                 .setName(command.id)
                 .setDescription(command.description)
             );
