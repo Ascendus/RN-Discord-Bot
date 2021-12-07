@@ -20,4 +20,4 @@ export class Logger {
     public sendReady(message: string): void {
         return console.log(`${chalk.magenta("ready")}   - ${message}`);
     };
-};
+};      
