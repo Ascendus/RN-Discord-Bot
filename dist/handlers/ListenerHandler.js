@@ -37,7 +37,7 @@ class ListenerHandler {
                     }));
                 }));
                 for (const category of categories.values()) {
-                    for (const listenerFileName of (0, fs_1.readdirSync)(`${this.directory}/${category}`).filter(fileName => fileName.endsWith(".js"))) {
+                    for (const listenerFileName of (0, fs_1.readdirSync)(`${this.directory}/${category}`).filter((fileName) => fileName.endsWith(".js"))) {
                         const listenerFile = require(`${this.directory}/${category}/${listenerFileName}`).default;
                         const listener = new listenerFile();
                         this.listeners.set(listener.name, listener);
@@ -53,7 +53,7 @@ class ListenerHandler {
                     }
                     ;
                     const categoryName = this.client.util.capitalize(category);
-                    const categoryListeners = this.listeners.filter(listener => listener.category.toLowerCase() === category.toLowerCase());
+                    const categoryListeners = this.listeners.filter((listener) => listener.category.toLowerCase() === category.toLowerCase());
                     this.categories.set(categoryName, new Category_1.Category(categoryName, {
                         content: categoryListeners,
                         type: "listener"
