@@ -1,8 +1,5 @@
 <br />
 <h1 align="center">Discord Nations Bot</h1>
-<br />
-<br />
-<br />
 <p align="center">
     <a href="https://github.com/Ascendus/RN-Discord-Bot/releases" target="_blank">
         <img alt="Version" src="https://img.shields.io/badge/version-1.0.0-blue.svg?style=for-the-badge&cacheSeconds=2592000" />
