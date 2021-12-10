@@ -6,8 +6,7 @@ import { ExtendedClient } from "../client/Client";
 import { SlashCommandBooleanOption, SlashCommandBuilder, SlashCommandChannelOption, SlashCommandIntegerOption, SlashCommandMentionableOption, SlashCommandNumberOption, SlashCommandRoleOption, SlashCommandStringOption, SlashCommandSubcommandBuilder, SlashCommandUserOption } from "@discordjs/builders";
 
 export class Command extends SlashCommandBuilder {
-    public aliases?: string[];
-    public arguments: Argument[] | undefined;
+    public arguments?: Argument[];
     public category: string;
     public channel: CommandChannel;
     public cooldown: number;
@@ -19,12 +18,11 @@ export class Command extends SlashCommandBuilder {
     public isSubCommand: boolean;
     public permissions: CommandPermissions;
     public ownerOnly: boolean;
-    public subCommands: Command[] | undefined;
+    public subCommands?: Command[];
     public usage: string;
 
     public constructor(id: string, options: CommandOptions) {
         super();
-        this.aliases = options.aliases;
         this.arguments = options.arguments;
         this.category = options.category;
         this.channel = options.channel;

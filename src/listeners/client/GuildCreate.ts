@@ -11,7 +11,7 @@ export default class GuildCreateListener extends Listener {
         });
     }
 
-    public async exec(client: ExtendedClient, guild: Guild): Promise<void> {
+    public async exec(_client: ExtendedClient, guild: Guild): Promise<void> {
         guild.channels.cache.forEach(async (channel: GuildChannel | ThreadChannel): Promise<void> => {
             if (
                 channel

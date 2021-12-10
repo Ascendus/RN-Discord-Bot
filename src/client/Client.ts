@@ -1,13 +1,12 @@
 import {
     Client,
-    ClientUser,
     Collection,
     CommandInteraction,
-    Guild
 } from "discord.js";
 import { Command } from "../structures/Command";
 import { CommandHandler } from "../handlers/CommandHandler";
 import { Configuration } from "../structures/Configuration";
+import { Country, Trade } from "../structures/util/Interfaces";
 import { ListenerHandler } from "../handlers/ListenerHandler";
 import { Logger } from "../structures/Logger";
 import { Markdown } from "../structures/util/Markdown";
@@ -18,55 +17,55 @@ import { join } from "path";
 
 declare module "discord.js" {
     interface Client {
+        blacklists: Collection<string, string[]>;
         commandHandler: CommandHandler;
         config: Configuration;
-        countries: Collection<string, any>;
-        guild: Guild;
-        guildID: string;
+        countries: Collection<string, Country>;
         listenerHandler: ListenerHandler;
         logger: Logger;
         markdown: Markdown;
-        trades: Collection<string, any>;
+        trades: Collection<string, Trade>;
         util: Utilities;
     }
 }
 
 export class ExtendedClient extends Client {
+    public blacklists: Collection<string, string[]>;
     public commandHandler: CommandHandler;
     public config: Configuration;
-    public guild: Guild;
-    public guildID: string;
+    public countries: Collection<string, Country>;
     public listenerHandler: ListenerHandler;
     public logger: Logger;
     public markdown: Markdown;
+    public trades: Collection<string, Trade>;
     public util: Utilities;
 
     public constructor() {
         super(configOptions.clientOptions);
 
+        this.blacklists = new Collection();
         this.config = new Configuration(configOptions);
-        this.guild = this.guilds.cache.get("760659394370994197") as Guild;
-        this.guildID = "760659394370994197";
+        this.countries = new Collection();
         this.logger = new Logger();
         this.markdown = new Markdown();
+        this.trades = new Collection();
         this.util = new Utilities(this);
 
-        this.commandHandler = new CommandHandler(/*this, {
-            allowDirectMessages: true,
+        this.commandHandler = new CommandHandler(this, {
             blockBots: true,
             directory: join(__dirname, "..", "commands"),
             warnings: {
-                dmOnly: (interaction: CommandInteraction): string => `${this.markdown.userMention(interaction.user.id)}, you can only use this command in servers!`,
-                guildOnly: (interaction: CommandInteraction): string => `${this.markdown.userMention(interaction.user.id)}, you can only use this command in direct message channels!`,
-                ownerOnly: (interaction: CommandInteraction): string => `${this.markdown.userMention(interaction.user.id)}, it seems that I was unable to execute the command because it is reserved for the owners of the bot. If you think this is a mistake, feel free to contact the bot developers (${this.markdown.userMention(this.config.owners[0])}).`,
+                guildOnly: (_interaction: CommandInteraction): string => ":x: You are not allowed to run commands in DMs.",
+                ownerOnly: (_interaction: CommandInteraction): string => ":x: This command can only be use by owners.",
+                blacklistedUser: (_interaction: CommandInteraction): string => ":x: You have been banned from using Roleplay Nations. Please contact a Game Administrator for an appeal.",
 
-                clientMissingPermissions: (client: ExtendedClient, interaction: CommandInteraction, permissions: string, command: Command): string => `Hey there **${interaction.user.username}**. Unfortunately ${(client.user as ClientUser).username} was unable to run the **${command.id}** command as it is missing the following permissions in this server: ${permissions}. If you do not have authorization to do change permissions, let a staff member know.`,
-                missingSendPermissions: (interaction: CommandInteraction): string => `${this.markdown.userMention(interaction.user.id)}, it seems that I was unable to execute the command as I am missing the following permission(s) in the server: \`Send Messages\``,
-                userMissingPermissions: (client: ExtendedClient, interaction: CommandInteraction, permissions: string, command: Command): string => `${this.markdown.userMention(interaction.user.id)}, it seems that I was unable to execute the **${command.id}** command as you are missing the following permissions in this server: ${permissions}. Please ensure you have the correct permissions required and rerun the command. If you think this is a mistake, feel free to contact the bot developers (${this.markdown.userMention(this.config.owners[0])}).`,
+                clientMissingPermissions: (_client: ExtendedClient, _interaction: CommandInteraction, permissions: string, _command: Command): string => `:x: I am missing the following permissions: ${permissions}.`,
+                missingSendPermissions: (_interaction: CommandInteraction): string => ":x: I am missing the following permissions: `Send Messages`",
+                userMissingPermissions: (_client: ExtendedClient, _interaction: CommandInteraction, permissions: string, _command: Command): string => `:x: You are missing the following permissions: ${permissions}.`,
 
-                cooldownWarning: (interaction: CommandInteraction, remaining: string, command: Command): string => `${this.markdown.userMention(interaction.user.id)}, please wait **${remaining}** seconds before reusing the \`${command.id}\` command!`
+                cooldownWarning: (_interaction: CommandInteraction, remaining: string, command: Command): string => `:x: Please wait **${remaining}** seconds before reusing the \`${command.id}\` command!`
             }
-        }*/);
+        });
 
         this.listenerHandler = new ListenerHandler(this, {
             directory: join(__dirname, "..", "listeners")
@@ -74,8 +73,8 @@ export class ExtendedClient extends Client {
     }
 
     private async init(): Promise<void> {
-        // await this.commandHandler.registerCommands(this.config.clientID);
-        // await this.commandHandler.load();
+        await this.commandHandler.registerCommands();
+        await this.commandHandler.load();
         await this.listenerHandler.load();
     }
 

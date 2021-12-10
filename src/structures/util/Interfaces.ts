@@ -1,8 +1,9 @@
 import { Argument } from "../Argument";
 import { ArgumentType, CommandChannel, Emitter, ListenerCategory, ListenerType } from "./Types";
 import { CategoryType } from "./Types";
-import { ClientOptions, Collection, ColorResolvable, PermissionString } from "discord.js";
+import { ClientOptions, Collection, ColorResolvable, CommandInteraction, PermissionString } from "discord.js";
 import { Command } from "../Command";
+import { ExtendedClient } from "../../client/Client";
 import { Listener } from "../Listener";
 import { OptionChoice } from "../OptionChoice";
 
@@ -591,8 +592,25 @@ export interface CommandExceptions {
     ignorePermissions: string[];
 };
 
+export interface CommandHandlerOptions {
+    blockBots: boolean;
+    directory: string;
+    warnings: CommandHandlerWarnings;
+};
+
+export interface CommandHandlerWarnings {
+    guildOnly(interaction: CommandInteraction): string;
+    ownerOnly(interaction: CommandInteraction): string;
+    blacklistedUser(interaction: CommandInteraction): string;
+
+    clientMissingPermissions(client: ExtendedClient, interaction: CommandInteraction, permissions: string, command: Command): string;
+    missingSendPermissions(interaction: CommandInteraction): string
+    userMissingPermissions(client: ExtendedClient, interaction: CommandInteraction, permissions: string, command: Command): string;
+
+    cooldownWarning(interaction: CommandInteraction, remaining: string, command: Command): string;
+};
+
 export interface CommandOptions {
-    aliases?: string[];
     arguments?: Argument[];
     category: string;
     channel: CommandChannel;
@@ -620,6 +638,91 @@ export interface ConfigurationOptions {
     token: string;
 }
 
+export interface Country {
+    country: string;
+    userID: string;
+    balance: number;
+    population: number;
+    billRate: number;
+    tax: number;
+    governmentType: number;
+    flag: string;
+    leader: string;
+    donator: number;
+    taxRate: number;
+    impRelations: [];
+    decRelation: [];
+    allies: [];
+    rivals: [];
+    vassalizeReq: [];
+    guarInd: [];
+    nonAggr: [];
+    citizenHappiness: number;
+    nationalMotto: string;
+    currency: string;
+    crimeRate: number;
+    diseaseRate: number;
+    pollutionIndex: number;
+    power: number;
+    fireHazard: number;
+    tourists: number;
+    water: number;
+    sewage: number;
+    tanks: number;
+    soliders: number;
+    planes: number;
+    ships: number;
+    missiles: number;
+    iron: number;
+    steel: number;
+    food: number;
+    aluminium: number;
+    lead: number;
+    uranium: number;
+    gasoline: number;
+    bauxite: number;
+    coal: number;
+    munitions: number;
+    oil: number;
+    infrastructure: number;
+    technology: number;
+    coalMines: number;
+    oilWells: number;
+    ironMines: number;
+    bauxiteMines: number;
+    leadMines: number;
+    uraniumMines: number;
+    farms: number;
+    munitionsFactories: number;
+    aluminiumRefinery: number;
+    steelMill: number;
+    petroleumRefinery: number;
+    policeStation: number;
+    fireStation: number;
+    hospital: number;
+    recCenter: number;
+    subway: number;
+    coalPowerP: number;
+    oilPowerP: number;
+    nuclearPowerP: number;
+    windPowerP: number;
+    hydroPowerP: number;
+    dogPark: number;
+    botGarden: number;
+    playground: number;
+    zoo: number;
+    theatre: number;
+    museum: number;
+    observatory: number;
+    waterPumpStation: number;
+    waterTower: number;
+    waterDrainPipe: number;
+    ecoWaterOutlet: number;
+    themePark: number;
+    stadium: number;
+    cinema: number;
+}
+
 export interface ListenerOptions {
     category: ListenerCategory;
     emitter: Emitter;
@@ -628,6 +731,16 @@ export interface ListenerOptions {
 
 export interface ListenerHandlerOptions {
     directory: string;
+}
+
+export interface Trade {
+    resourceAmount: number;
+    resource: string;
+    moneyAmount: number;
+    tradeID: string;
+    createdAt: string;
+    buyOffer: number;
+    seller: string;
 }
 
 export interface UtilityDefaults {
