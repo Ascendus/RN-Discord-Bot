@@ -38,7 +38,7 @@ export default class StartCommand extends Command {
         });
     }
 
-    public async exec(client: ExtendedClient, interaction: CommandInteraction) {
+    public async exec(client: ExtendedClient, interaction: CommandInteraction): Promise<void> {
         const countryName: string = interaction.options.getString((this.arguments as Argument[])[0].name) as string;
         const countryList: Country[] = [];
 
