@@ -1,5 +1,5 @@
 import { Command } from "../../structures/Command";
-import { CommandInteraction, MessageEmbed } from "discord.js";
+import { CommandInteraction } from "discord.js";
 import { ExtendedClient } from "../../client/Client";
 
 import { configOptions } from "../../client/Config";
@@ -10,7 +10,7 @@ export default class DonateCommand extends Command {
             category: "Core",
             channel: "guild",
             cooldown: 5,
-            description: " Used to get info on donation tiers and their pricings.",
+            description: "Used to get info on donation tiers and their pricings.",
             enabledByDefault: true,
             examples: ["donate"],
             exceptions: {
