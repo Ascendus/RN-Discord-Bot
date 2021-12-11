@@ -21,7 +21,7 @@ export default class StartCommand extends Command {
             category: "Core",
             channel: "guild",
             cooldown: 5,
-            description: "Creates a new country.",
+            description: "Establishes your nation.",
             enabledByDefault: true,
             examples: ["start MyCountry"],
             exceptions: {
