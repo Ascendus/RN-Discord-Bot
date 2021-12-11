@@ -4,7 +4,7 @@ import { ExtendedClient } from "../../client/Client";
 
 import { configOptions } from "../../client/Config";
 
-export default class DonateCommand extends Command {
+export default class InviteCommand extends Command {
     public constructor() {
         super("invite", {
             category: "Core",
