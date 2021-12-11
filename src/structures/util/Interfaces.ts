@@ -649,9 +649,10 @@ export interface Country {
     flag: string;
     leader: string;
     donator: number;
+    moneyTyphoon: number;
     taxRate: number;
     impRelations: [];
-    decRelation: [];
+    decRelations: [];
     allies: [];
     rivals: [];
     vassalizeReq: [];
@@ -672,6 +673,7 @@ export interface Country {
     soliders: number;
     planes: number;
     ships: number;
+    spies: number;
     missiles: number;
     iron: number;
     steel: number;

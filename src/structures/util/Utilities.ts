@@ -1,7 +1,6 @@
-import { Command } from "../Command";
-import { MessageEmbed, MessageEmbedOptions } from "discord.js";
+import { Country, UtilityDefaults } from "./Interfaces";
 import { ExtendedClient } from "../../client/Client";
-import { UtilityDefaults } from "./Interfaces";
+import { MessageEmbed, MessageEmbedOptions } from "discord.js";
 
 export class Utilities {
     public client: ExtendedClient;
@@ -20,8 +19,39 @@ export class Utilities {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
+    public checkCountryName(country: string, countryList: Country[]) {
+        let message: null | MessageEmbed;
+        message = null;
+
+        if (country.length > 25) message = new MessageEmbed({
+            title: "Denied",
+            color: "RED",
+            description: ":x: Your nation name must be between 1 and 25 characters long"
+        });
+
+        const countryNames: string[] = [];
+
+        countryList.forEach((country: Country): void => {
+            countryNames.push(country.country.toLowerCase());
+        });
+
+        if (countryNames.includes(country.toLowerCase())) message = new MessageEmbed({
+            title: "Nation Name Taken",
+            color: "RED",
+            fields: [
+                { name: ":x: Name taken", value: "Name taken, please try again with a different name"}
+            ]
+        });
+
+        return message;
+    }
+
     public embed(options: MessageEmbedOptions): MessageEmbed {
         return new MessageEmbed(options);
+    }
+
+    public getVariableName(obj: { variable: any }): string {    
+        return Object.keys(obj)[0];
     }
 
     public pages(
