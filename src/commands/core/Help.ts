@@ -28,7 +28,7 @@ export default class HelpCommand extends Command {
         });
     }
 
-    public async exec(_client: ExtendedClient, interaction: CommandInteraction) {
+    public async exec(_client: ExtendedClient, interaction: CommandInteraction): Promise<void> {
         const embeds: MessageEmbed[] = [
             new MessageEmbed({
                 title: "Command List",
